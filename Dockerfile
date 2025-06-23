@@ -1,5 +1,4 @@
-FROM public.ecr.aws/f9i8n4n5/nginx-alpine:latest
-
+FROM public.ecr.aws/f9i8n4n5/node-18-alpine
 WORKDIR /app
 
 # Copy package files
