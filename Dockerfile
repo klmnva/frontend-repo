@@ -7,7 +7,7 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Copy source code
+# Copy source code.
 COPY . .
 
 # Build the app
@@ -19,5 +19,5 @@ RUN npm install -g serve
 # Expose port
 EXPOSE 3000
 
-# Start the application
+# Start the application.
 CMD ["serve", "-s", "build", "-l", "3000"]
