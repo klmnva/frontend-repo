@@ -5,7 +5,7 @@ import './App.css';
 interface User {
   id: number;
   name: string;
-  email: string;
+  hobby: string;
   created_at: string;
 }
 
@@ -14,7 +14,7 @@ const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api
 function App() {
   const [users, setUsers] = useState<User[]>([]);
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [hobby, sethobby] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -35,7 +35,7 @@ function App() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email) {
+    if (!name || !hobby) {
       setError('Please fill in all fields');
       return;
     }
@@ -44,7 +44,7 @@ function App() {
     setError('');
 
     try {
-      await axios.post(`${API_BASE_URL}/users`, { name, email });
+      await axios.post(`${API_BASE_URL}/users`, { name, hobby });
       setName('');
       setEmail('');
       fetchUsers(); // Refresh the list
@@ -86,10 +86,10 @@ function App() {
             </div>
             <div className="form-group">
               <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="hobby"
+                placeholder="hobby"
+                value={hobby}
+                onChange={(e) => sethobby(e.target.value)}
                 disabled={loading}
               />
             </div>
@@ -111,7 +111,7 @@ function App() {
                 <div key={user.id} className="user-card">
                   <div className="user-info">
                     <h3>{user.name}</h3>
-                    <p>{user.email}</p>
+                    <p>{user.hobby}</p>
                     <small>Added: {new Date(user.created_at).toLocaleDateString()}</small>
                   </div>
                   <button 
