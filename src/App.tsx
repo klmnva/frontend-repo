@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
@@ -5,7 +6,7 @@ import './App.css';
 interface User {
   id: number;
   name: string;
-  hobby: string;
+  email: string;
   created_at: string;
 }
 
@@ -14,7 +15,7 @@ const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api
 function App() {
   const [users, setUsers] = useState<User[]>([]);
   const [name, setName] = useState('');
-  const [hobby, sethobby] = useState('');
+  const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -35,7 +36,7 @@ function App() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !hobby) {
+    if (!name || !email) {
       setError('Please fill in all fields');
       return;
     }
@@ -44,7 +45,7 @@ function App() {
     setError('');
 
     try {
-      await axios.post(`${API_BASE_URL}/users`, { name, hobby });
+      await axios.post(`${API_BASE_URL}/users`, { name, email });
       setName('');
       setEmail('');
       fetchUsers(); // Refresh the list
@@ -86,10 +87,10 @@ function App() {
             </div>
             <div className="form-group">
               <input
-                type="hobby"
-                placeholder="hobby"
-                value={hobby}
-                onChange={(e) => sethobby(e.target.value)}
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 disabled={loading}
               />
             </div>
@@ -111,7 +112,7 @@ function App() {
                 <div key={user.id} className="user-card">
                   <div className="user-info">
                     <h3>{user.name}</h3>
-                    <p>{user.hobby}</p>
+                    <p>{user.email}</p>
                     <small>Added: {new Date(user.created_at).toLocaleDateString()}</small>
                   </div>
                   <button 
