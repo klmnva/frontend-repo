@@ -3,14 +3,14 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #bb1ec9;
   padding: 20px;
   color: white;
   min-height: 100vh;
 }
 
 .form-container {
-  background-color: #3a3f47;
+  background-color: #1321e1;
   padding: 20px;
   margin: 20px auto;
   border-radius: 8px;
@@ -32,7 +32,7 @@
 
 button {
   background-color: #61dafb;
-  color: #282c34;
+  color: #bb1ec9;
   border: none;
   padding: 10px 20px;
   border-radius: 4px;
